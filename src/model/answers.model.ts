@@ -19,7 +19,4 @@ export const answerssSchema = new Schema<IAnswers>({
 	connect: { type: Boolean, required: false },
 });
 
-export const QuestionsModal = mongoose.model<IAnswers>(
-	'answers',
-	answerssSchema
-);
+export const AnswersModal = mongoose.model<IAnswers>('answers', answerssSchema);
