@@ -1,25 +1,24 @@
-import { Schema, model } from 'mongoose';
-import mongoose from 'mongoose';
-import { ObjectId } from 'mongoose';
+import { ObjectId, Schema } from "mongoose";
+import mongoose from "mongoose";
 export interface IQuestions {
-	firstName: string;
-	lastName: string;
-	email: string;
-	password: string;
-	token?: string;
-	connect?: boolean;
+	userName: string;
+	date: Date;
+	title: string;
+	subjectId: string;
+	header: string;
+	answers: [ObjectId];
 }
 
 export const questionsSchema = new Schema<IQuestions>({
-	firstName: { type: String, required: true },
-	lastName: { type: String, required: true },
-	email: { type: String, required: true },
-	password: { type: String, required: true },
-	token: { type: String, required: false },
-	connect: { type: Boolean, required: false },
+	userName: { type: String, required: true },
+	date: { type: Date, required: true },
+	title: { type: String, required: true },
+	subjectId: { type: String, required: true },
+	header: { type: String, required: false },
+	answers: { type: [Schema.Types.ObjectId], required: false },
 });
 
 export const QuestionsModal = mongoose.model<IQuestions>(
-	'questions',
+	"questions",
 	questionsSchema
 );
