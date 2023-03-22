@@ -13,6 +13,7 @@ export const createUser = async (user: IUser) => {
 	const newUser = new UsersModal(user);
 	try {
 		await newUser.save();
+
 		return newUser;
 	} catch (err) {
 		console.log(err);
