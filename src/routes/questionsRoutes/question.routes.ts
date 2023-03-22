@@ -1,12 +1,8 @@
 import express from 'express';
-// import {
-// 	getAllUsers,
-// 	newUser,
-// 	getoldUser,
-// } from '../../controllers/users.controllers';
+import { getAllQuestions } from '../../controllers/questions.controllers';
 const questionRouter = express.Router();
 
-// userRouter.get('/', getAllUsers);
-// userRouter.post('/create', getoldUser);
-// userRouter.post('/', newUser);
+questionRouter.get('/', getAllQuestions);
+// questionRouter.post('/create', getoldUser);
+// questionRouter.post('/', newUser);
 export default questionRouter;

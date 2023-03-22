@@ -1,12 +1,8 @@
 import express from 'express';
-// import {
-// 	getAllUsers,
-// 	newUser,
-// 	getoldUser,
-// } from '../../controllers/users.controllers';
+import { getAllSubjects } from '../../controllers/subjects.controllers';
 const subjectRouter = express.Router();
 
-// userRouter.get('/', getAllUsers);
-// userRouter.post('/create', getoldUser);
-// userRouter.post('/', newUser);
+subjectRouter.get('/', getAllSubjects);
+// subjectRouter.post('/create', getoldUser);
+// subjectRouter.post('/', newUser);
 export default subjectRouter;
