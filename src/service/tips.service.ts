@@ -13,7 +13,6 @@ export const createTip = async (tip: ITips) => {
 	const newTip = new TipsModal(tip);
 	try {
 		await newTip.save();
-
 		return newTip;
 	} catch (err) {
 		console.log(err);

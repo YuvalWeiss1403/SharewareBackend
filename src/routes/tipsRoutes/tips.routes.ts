@@ -1,7 +1,7 @@
 import express from 'express';
-import { getAllTips } from '../../controllers/tips.controllers';
+import { getAllTips, newTip } from '../../controllers/tips.controllers';
 const tipsRouter = express.Router();
 
 tipsRouter.get('/', getAllTips);
-// tipsRouter.post('/', createTips);
+tipsRouter.post('/', newTip);
 export default tipsRouter;
