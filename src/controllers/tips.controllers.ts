@@ -1,4 +1,4 @@
-import { getTips, createTip } from '../service/tips.service';
+import { getTips, createTip, updateLike } from '../service/tips.service';
 import express, { Request, Response } from 'express';
 import { TipsModal } from '../model/tips.model';
 
@@ -19,6 +19,14 @@ export const newTip = async (req: Request, res: Response) => {
 		}
 		const newTips = await createTip(req.body);
 		res.status(201).json(newTips);
+	} catch (err) {
+		throw err;
+	}
+};
+export const tipLike = async (req: Request, res: Response) => {
+	try {
+		const tipLike = await updateLike(req.body, req.body._id);
+		res.status(201).json(tipLike);
 	} catch (err) {
 		throw err;
 	}

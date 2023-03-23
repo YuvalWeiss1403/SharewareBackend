@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongoose';
 import { ITips, TipsModal } from '../model/tips.model';
 
 export const getTips = async () => {
@@ -14,6 +15,14 @@ export const createTip = async (tip: ITips) => {
 	try {
 		await newTip.save();
 		return newTip;
+	} catch (err) {
+		console.log(err);
+		throw err;
+	}
+};
+export const updateLike = async (_id: ObjectId, tips: ITips) => {
+	try {
+		const like = await TipsModal.findByIdAndUpdate(_id, tips);
 	} catch (err) {
 		console.log(err);
 		throw err;
