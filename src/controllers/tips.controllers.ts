@@ -25,7 +25,7 @@ export const newTip = async (req: Request, res: Response) => {
 };
 export const tipLike = async (req: Request, res: Response) => {
 	try {
-		const tipLike = await updateLike(req.body, req.body._id);
+		const tipLike = await updateLike(req.body._id, req.body.data);
 		res.status(201).json(tipLike);
 	} catch (err) {
 		throw err;

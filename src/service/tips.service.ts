@@ -22,7 +22,11 @@ export const createTip = async (tip: ITips) => {
 };
 export const updateLike = async (_id: ObjectId, tips: ITips) => {
 	try {
-		const like = await TipsModal.findByIdAndUpdate(_id, tips);
+		const like = await TipsModal.findByIdAndUpdate(_id, tips, { new: true });
+		console.log(like);
+		if (like) {
+			return like;
+		}
 	} catch (err) {
 		console.log(err);
 		throw err;
