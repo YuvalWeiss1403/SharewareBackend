@@ -12,8 +12,9 @@ export const getAllTips = async (req: Request, res: Response) => {
 };
 export const newTip = async (req: Request, res: Response) => {
 	try {
-		const { title, userName } = req.body;
-		if (!(title && userName)) {
+		console.log(req.body);
+		const { title, username, comment } = req.body;
+		if (!(title && username && comment)) {
 			return res.status(400).send('All input is required');
 		}
 		const newTips = await createTip(req.body);
