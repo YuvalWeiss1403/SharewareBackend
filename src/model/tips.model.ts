@@ -4,11 +4,13 @@ export interface ITips {
 	title: string;
 	userName: string;
 	approved: boolean;
+	comment: string;
 }
 
 export const tipsSchema = new Schema<ITips>({
 	title: { type: String, required: true },
 	userName: { type: String, required: true },
+	comment: { type: String, required: true },
 	approved: { type: Boolean, required: true },
 });
 
