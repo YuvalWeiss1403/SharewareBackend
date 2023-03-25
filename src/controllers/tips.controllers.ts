@@ -1,4 +1,9 @@
-import { getTips, createTip, updateLike } from '../service/tips.service';
+import {
+	getTips,
+	createTip,
+	updateLike,
+	deleteTip,
+} from '../service/tips.service';
 import express, { Request, Response } from 'express';
 import { TipsModal } from '../model/tips.model';
 
@@ -29,5 +34,21 @@ export const tipLike = async (req: Request, res: Response) => {
 		res.status(201).json(tipLike);
 	} catch (err) {
 		throw err;
+	}
+};
+export const deleteTips = async (req: Request, res: Response) => {
+	try {
+		const tips = await deleteTip(req.body._id);
+		return res.status(200).json({
+			status: 200,
+			data: tips,
+			message: 'Successfully removed chef',
+		});
+	} catch (err: any) {
+		console.log(err);
+		return res.status(500).json({
+			status: 500,
+			message: 'Internal server error',
+		});
 	}
 };
