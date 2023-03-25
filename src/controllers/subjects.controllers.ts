@@ -16,7 +16,7 @@ export const getAllSubjects = async (req: Request, res: Response) => {
 };
 export const createSubjects = async (req: Request, res: Response) => {
 	try {
-		console.log(req.body);
+		console.log(req.body.name);
 		const { name } = req.body;
 		if (!name) {
 			return res.status(400).send('All input is required');
