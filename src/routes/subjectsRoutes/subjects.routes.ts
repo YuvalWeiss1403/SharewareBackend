@@ -1,8 +1,12 @@
 import express from 'express';
-import { getAllSubjects } from '../../controllers/subjects.controllers';
+import {
+	createSubjects,
+	deleteSubjects,
+	getAllSubjects,
+} from '../../controllers/subjects.controllers';
 const subjectRouter = express.Router();
 
 subjectRouter.get('/', getAllSubjects);
-// subjectRouter.post('/create', getoldUser);
-// subjectRouter.post('/', newUser);
+subjectRouter.post('/', createSubjects);
+subjectRouter.delete('/', deleteSubjects);
 export default subjectRouter;
