@@ -33,10 +33,10 @@ export const createSubjects = async (req: Request, res: Response) => {
 };
 export const deleteSubjects = async (req: Request, res: Response) => {
 	try {
-		const tips = await deleteSubject(req.body._id);
+		const subjects = await deleteSubject(req.body._id);
 		return res.status(200).json({
 			status: 200,
-			data: tips,
+			data: subjects,
 			message: 'Successfully removed chef',
 		});
 	} catch (err: any) {

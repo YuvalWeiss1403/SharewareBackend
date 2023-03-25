@@ -1,8 +1,12 @@
 import express from 'express';
-import { getAllQuestions } from '../../controllers/questions.controllers';
+import {
+	createQuestions,
+	deleteQuestions,
+	getAllQuestions,
+} from '../../controllers/questions.controllers';
 const questionRouter = express.Router();
 
 questionRouter.get('/', getAllQuestions);
-// questionRouter.post('/create', getoldUser);
-// questionRouter.post('/', newUser);
+questionRouter.post('/', createQuestions);
+questionRouter.delete('/', deleteQuestions);
 export default questionRouter;

@@ -1,8 +1,12 @@
 import express from 'express';
-import { getAllAnswers } from '../../controllers/answers.controllers';
+import {
+	createAnswer,
+	deleteAnswer,
+	getAllAnswers,
+} from '../../controllers/answers.controllers';
 const answersRouter = express.Router();
 
 answersRouter.get('/', getAllAnswers);
-// answersRouter.post('/create', getoldUser);
-// answersRouter.post('/', newUser);
+answersRouter.post('/', createAnswer);
+answersRouter.delete('/', deleteAnswer);
 export default answersRouter;
