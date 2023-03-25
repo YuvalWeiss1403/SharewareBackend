@@ -1,5 +1,5 @@
-import { ObjectId, Schema } from "mongoose";
-import mongoose from "mongoose";
+import { ObjectId, Schema } from 'mongoose';
+import mongoose from 'mongoose';
 export interface IQuestions {
 	userName: string;
 	date: Date;
@@ -19,6 +19,6 @@ export const questionsSchema = new Schema<IQuestions>({
 });
 
 export const QuestionsModal = mongoose.model<IQuestions>(
-	"questions",
+	'questions',
 	questionsSchema
 );
