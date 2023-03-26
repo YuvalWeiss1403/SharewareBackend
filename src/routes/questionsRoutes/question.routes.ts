@@ -4,10 +4,9 @@ import {
 	deleteQuestions,
 	getAllQuestions,
 } from '../../controllers/questions.controllers';
-import IsAdmin from '../../middleWare/IsAdmin';
 const questionRouter = express.Router();
-
+const middleWare = require('../../middleWare/IsAdmin');
 questionRouter.get('/', getAllQuestions);
-questionRouter.post('/', IsAdmin('admin'), createQuestions);
-questionRouter.delete('/', IsAdmin('admin'), deleteQuestions);
+questionRouter.post('/', middleWare.adminVerify('admin'), createQuestions);
+questionRouter.delete('/', middleWare.adminVerify('admin'), deleteQuestions);
 export default questionRouter;

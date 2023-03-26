@@ -4,10 +4,10 @@ import {
 	deleteAnswer,
 	getAllAnswers,
 } from '../../controllers/answers.controllers';
-import IsAdmin from '../../middleWare/IsAdmin';
-const answersRouter = express.Router();
 
+const answersRouter = express.Router();
+const middleWare = require('../../middleWare/IsAdmin');
 answersRouter.get('/', getAllAnswers);
-answersRouter.post('/', IsAdmin('admin'), createAnswer);
-answersRouter.delete('/', IsAdmin('admin'), deleteAnswer);
+answersRouter.post('/', middleWare.adminVerify('admin'), createAnswer);
+answersRouter.delete('/', middleWare.adminVerify('admin'), deleteAnswer);
 export default answersRouter;
