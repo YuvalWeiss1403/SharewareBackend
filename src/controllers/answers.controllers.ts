@@ -15,6 +15,7 @@ export const getAllAnswers = async (req: Request, res: Response) => {
 	}
 };
 export const createAnswer = async (req: Request, res: Response) => {
+	console.log(req.body);
 	try {
 		console.log(req.body);
 		const newAnswer = await createAnswers(req.body);
