@@ -35,7 +35,7 @@ export const newUser = async (req: Request, res: Response) => {
 		});
 		const token = jwt.sign(
 			{ user_id: user._id, email, userType: user.userType },
-			process.env.TOKEN_KEY as string,
+			tokenKey,
 			{
 				expiresIn: '2h',
 			}
@@ -61,7 +61,7 @@ export const getOldUser = async function (req: Request, res: Response) {
 		if (user && (await bcrypt.compare(password, user.password))) {
 			const token = jwt.sign(
 				{ user_id: user._id, email, userType: user.userType },
-				process.env.TOKEN_KEY as string,
+				tokenKey,
 				{
 					expiresIn: '2h',
 				}

@@ -7,7 +7,6 @@ export interface IUser {
 	email: string;
 	password: string;
 	token?: string;
-	connect?: boolean;
 	userType?: string;
 }
 
@@ -18,7 +17,6 @@ export const userSchema = new Schema<IUser>({
 	email: { type: String, required: true },
 	password: { type: String, required: true },
 	token: { type: String, required: false },
-	// connect: { type: Boolean, required: false },
 	userType: { type: String, default: 'user' },
 });
 
