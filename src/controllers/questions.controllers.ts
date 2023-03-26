@@ -23,6 +23,7 @@ export const createQuestions = async (req: Request, res: Response) => {
 	}
 };
 export const deleteQuestions = async (req: Request, res: Response) => {
+	console.log(req.body);
 	try {
 		const question = await deleteQuestion(req.body._id);
 		return res.status(200).json({
