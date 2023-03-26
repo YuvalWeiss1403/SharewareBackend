@@ -17,7 +17,7 @@ export const userSchema = new Schema<IUser>({
 	userName: { type: String, required: false },
 	email: { type: String, required: true },
 	password: { type: String, required: true },
-	// token: { type: String, required: false },
+	token: { type: String, required: false },
 	// connect: { type: Boolean, required: false },
 	userType: { type: String, default: 'user' },
 });
