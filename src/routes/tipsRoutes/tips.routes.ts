@@ -8,7 +8,7 @@ import {
 const tipsRouter = express.Router();
 const middleWare = require('../../middleWare/IsAdmin');
 tipsRouter.get('/', getAllTips);
-tipsRouter.post('/', middleWare.adminVerify('admin'), newTip);
+tipsRouter.post('/', newTip);
 tipsRouter.put('/', tipLike);
 tipsRouter.delete('/', middleWare.adminVerify('admin'), deleteTips);
 export default tipsRouter;

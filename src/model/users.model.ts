@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, ObjectId } from 'mongoose';
 import mongoose from 'mongoose';
 export interface IUser {
 	firstName: string;
@@ -8,6 +8,7 @@ export interface IUser {
 	password: string;
 	token?: string;
 	userType?: string;
+	tipLiked?: ObjectId[];
 }
 
 export const userSchema = new Schema<IUser>({
@@ -18,6 +19,7 @@ export const userSchema = new Schema<IUser>({
 	password: { type: String, required: true },
 	token: { type: String, required: false },
 	userType: { type: String, default: 'user' },
+	tipLiked: { type: [Schema.Types.ObjectId], default: '[]' },
 });
 
 export const UsersModal = mongoose.model<IUser>('users', userSchema);
