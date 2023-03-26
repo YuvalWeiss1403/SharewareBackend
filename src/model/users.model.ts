@@ -8,7 +8,7 @@ export interface IUser {
 	password: string;
 	token?: string;
 	userType?: string;
-	tipLiked?: ObjectId[];
+	tipLiked?: string[];
 }
 
 export const userSchema = new Schema<IUser>({
@@ -19,7 +19,7 @@ export const userSchema = new Schema<IUser>({
 	password: { type: String, required: true },
 	token: { type: String, required: false },
 	userType: { type: String, default: 'user' },
-	tipLiked: { type: [Schema.Types.ObjectId], default: '[]' },
+	tipLiked: { type: [String], default: [] },
 });
 
 export const UsersModal = mongoose.model<IUser>('users', userSchema);
