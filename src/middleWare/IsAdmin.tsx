@@ -3,28 +3,26 @@ const jwt = require('jsonwebtoken');
 const isAdmin =
 	(admin: string) =>
 	async (req: Request, res: Response, next: NextFunction) => {
-		const authHeader = req.headers.authorization;
-		const id = req.body.userId;
-		if (!authHeader) {
-			return res.status(403).send('access denied');
-		}
-		const token = authHeader.split('')[1];
+		const token = req.headers.authorization?.split(' ')[1];
+
 		if (!token) {
-			return res.status(401).json({ message: 'No JWT token provied.' });
+			return res?.status(400).json({ message: 'no verify found' });
 		}
 		try {
-			const decodedToken = jwt.verify(token, process.env.TOKENKEY) as {
-				_id: string;
-				isAdmin: boolean;
+			const user = jwt.verify(token, process.env.TOKEN_KEY as string) as {
+				userType: string;
 			};
-			if (!decodedToken) {
+			if (user.userType === admin) {
+				next();
+			} else {
 				return res
 					.status(401)
-					.json({ message: 'You are not authorised to perform this action' });
+					.json({ message: 'You are not authorized to perform this action.' });
 			}
-			next();
-		} catch (err) {
-			return res.status(401).json({ message: 'Invaid JWT token' });
+		} catch (error) {
+			return res
+				.status(401)
+				.json({ message: 'You are not authorized to perform this action.' });
 		}
 	};
 

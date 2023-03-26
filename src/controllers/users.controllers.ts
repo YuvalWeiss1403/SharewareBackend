@@ -33,9 +33,14 @@ export const newUser = async (req: Request, res: Response) => {
 			email: email.toLowerCase(), // sanitize: convert email to lowercase
 			password: encryptedPassword,
 		});
-		const token = jwt.sign({ user_id: user._id, email }, tokenKey, {
-			expiresIn: '2h',
-		});
+		const token = jwt.sign(
+			{ user_id: user._id, email, userType: user.userType },
+			process.env.TOKEN_KEY as string,
+			{
+				expiresIn: '2h',
+			}
+		);
+
 		user.token = token;
 		user.save();
 		const newuser = await createUser(user);
@@ -54,9 +59,14 @@ export const getOldUser = async function (req: Request, res: Response) {
 		const user = await UsersModal.findOne({ email });
 
 		if (user && (await bcrypt.compare(password, user.password))) {
-			const token = jwt.sign({ user_id: user._id, email }, tokenKey, {
-				expiresIn: '2h',
-			});
+			const token = jwt.sign(
+				{ user_id: user._id, email, userType: user.userType },
+				process.env.TOKEN_KEY as string,
+				{
+					expiresIn: '2h',
+				}
+			);
+
 			user.token = token;
 			res.status(201).json(user);
 		}
