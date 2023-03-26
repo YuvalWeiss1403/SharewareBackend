@@ -4,10 +4,10 @@ import {
 	deleteSubjects,
 	getAllSubjects,
 } from '../../controllers/subjects.controllers';
-import isAdmin from '../../middleWare/IsAdmin';
+import IsAdmin from '../../middleWare/IsAdmin';
 const subjectRouter = express.Router();
 
 subjectRouter.get('/', getAllSubjects);
-subjectRouter.post('/', isAdmin('admin'), createSubjects);
-subjectRouter.delete('/', isAdmin('admin'), deleteSubjects);
+subjectRouter.post('/', IsAdmin('admin'), createSubjects);
+subjectRouter.delete('/', IsAdmin('admin'), deleteSubjects);
 export default subjectRouter;

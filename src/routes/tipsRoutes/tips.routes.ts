@@ -5,11 +5,11 @@ import {
 	newTip,
 	tipLike,
 } from '../../controllers/tips.controllers';
-import isAdmin from '../../middleWare/IsAdmin';
+import IsAdmin from '../../middleWare/IsAdmin';
 const tipsRouter = express.Router();
 
 tipsRouter.get('/', getAllTips);
-tipsRouter.post('/', isAdmin('admin'), newTip);
+tipsRouter.post('/', IsAdmin('admin'), newTip);
 tipsRouter.put('/', tipLike);
-tipsRouter.delete('/', isAdmin('admin'), deleteTips);
+tipsRouter.delete('/', IsAdmin('admin'), deleteTips);
 export default tipsRouter;
