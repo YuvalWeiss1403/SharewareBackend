@@ -6,6 +6,7 @@ import {
 } from '../service/tips.service';
 import express, { Request, Response } from 'express';
 import { TipsModal } from '../model/tips.model';
+import { UsersModal } from '../model/users.model';
 
 export const getAllTips = async (req: Request, res: Response) => {
 	try {
@@ -29,8 +30,18 @@ export const newTip = async (req: Request, res: Response) => {
 	}
 };
 export const tipLike = async (req: Request, res: Response) => {
+	console.log(req.body.userId);
+	console.log(req.body);
 	try {
 		const tipLike = await updateLike(req.body._id, req.body.data);
+		const userData = await UsersModal.findById(req.body.userId);
+		console.log('userdata', userData);
+		if (!userData) {
+			return res.status(404).send('user not found');
+		}
+		userData.tipLiked?.push(req.body._id);
+		console.log(userData.tipLiked);
+		await userData.save();
 		res.status(201).json(tipLike);
 	} catch (err) {
 		throw err;
