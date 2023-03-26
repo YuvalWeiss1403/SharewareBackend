@@ -8,6 +8,6 @@ import {
 const answersRouter = express.Router();
 const middleWare = require('../../middleWare/IsAdmin');
 answersRouter.get('/', getAllAnswers);
-answersRouter.post('/', middleWare.adminVerify('admin'), createAnswer);
+answersRouter.post('/', createAnswer);
 answersRouter.delete('/', middleWare.adminVerify('admin'), deleteAnswer);
 export default answersRouter;
