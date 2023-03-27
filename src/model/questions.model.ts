@@ -14,7 +14,7 @@ export const questionsSchema = new Schema<IQuestions>({
 	date: { type: Date, required: true },
 	title: { type: String, required: true },
 	subjectId: { type: String, required: true },
-	question: { type: String, required: false },
+	question: { type: String, required: true },
 	answers: { type: [Schema.Types.ObjectId], required: false },
 });
 

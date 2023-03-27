@@ -15,6 +15,7 @@ export const getAllQuestions = async (req: Request, res: Response) => {
 	}
 };
 export const createQuestions = async (req: Request, res: Response) => {
+	console.log(req.body);
 	try {
 		const newQuestion = await createQuestion(req.body);
 		res.status(201).json(newQuestion);
