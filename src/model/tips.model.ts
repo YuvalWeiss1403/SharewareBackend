@@ -6,7 +6,7 @@ export interface ITips {
 	approved?: boolean;
 	likes: number;
 	comment: string;
-	userId?: string;
+	userId: string;
 }
 
 export const tipsSchema = new Schema<ITips>({
