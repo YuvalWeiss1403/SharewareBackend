@@ -28,3 +28,14 @@ export const deleteAnswers = async (answersId: string) => {
 		throw err;
 	}
 };
+export const filterDeleteData = async (arrayAnswer: IAnswers[]) => {
+	try {
+		arrayAnswer.map(async (oneAnswer: any) => {
+			await AnswersModal.findByIdAndDelete(oneAnswer._id);
+		});
+		return await AnswersModal.find();
+	} catch (err) {
+		console.log(err);
+		throw err;
+	}
+};

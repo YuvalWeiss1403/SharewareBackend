@@ -5,6 +5,8 @@ import {
 } from '../service/questions.service';
 import express, { Request, Response } from 'express';
 import { QuestionsModal } from '../model/questions.model';
+import { AnswersModal } from '../model/answers.model';
+import { filterDeleteData } from '../service/answers.service';
 
 export const getAllQuestions = async (req: Request, res: Response) => {
 	try {
@@ -24,8 +26,12 @@ export const createQuestions = async (req: Request, res: Response) => {
 	}
 };
 export const deleteQuestions = async (req: Request, res: Response) => {
-	console.log(req.body);
 	try {
+		const answers = await AnswersModal.find();
+		const filterData = answers.filter((question: any) => {
+			return String(question.questionsId) == req.body._id;
+		});
+		const deleteAnswer = await filterDeleteData(filterData);
 		const question = await deleteQuestion(req.body._id);
 		return res.status(200).json({
 			status: 200,
