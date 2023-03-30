@@ -22,6 +22,9 @@ export const newUser = async (req: Request, res: Response) => {
 		if (!(firstName && lastName && email && password)) {
 			return res.status(400).send('All input is required');
 		}
+		if (!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)) {
+			return res.status(400).send('Password must contain at least 8 characters with a combination of uppercase and lowercase letters and numbers.');
+		}
 		const oldUser = await UsersModal.findOne({ email });
 		if (oldUser) {
 			return res.status(409).send('User Already Exist. Please Login');
