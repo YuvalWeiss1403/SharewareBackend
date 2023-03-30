@@ -4,6 +4,7 @@ import { UsersModal } from '../model/users.model';
 let bcrypt = require('bcrypt');
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import { AdminUsersModal } from '../model/adminUser.model';
 dotenv.config();
 const tokenKey = process.env.TOKEN_KEY || 'default_value';
 
@@ -23,11 +24,19 @@ export const newUser = async (req: Request, res: Response) => {
 			return res.status(400).send('All input is required');
 		}
 		if (!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)) {
-			return res.status(400).send('Password must contain at least 8 characters with a combination of uppercase and lowercase letters and numbers.');
+			return res
+				.status(400)
+				.send(
+					'Password must contain at least 8 characters with a combination of uppercase and lowercase letters and numbers.'
+				);
 		}
 		const oldUser = await UsersModal.findOne({ email });
 		if (oldUser) {
 			return res.status(409).send('User Already Exist. Please Login');
+		}
+		const corecctUser = await AdminUsersModal.findOne({ email });
+		if (!corecctUser) {
+			return res.status(409).send('Not allowed to enter');
 		}
 		const encryptedPassword = await bcrypt.hash(password, 10);
 		const user = await UsersModal.create({
