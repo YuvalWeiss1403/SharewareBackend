@@ -1,4 +1,4 @@
-import { getUsers, createUser } from '../service/users.service';
+import { getUsers, createUser, updateUser } from '../service/users.service';
 import express, { Request, Response } from 'express';
 import { UsersModal } from '../model/users.model';
 let bcrypt = require('bcrypt');
@@ -36,9 +36,14 @@ export const newUser = async (req: Request, res: Response) => {
 			email: email.toLowerCase(), // sanitize: convert email to lowercase
 			password: encryptedPassword,
 		});
-		const token = jwt.sign({ user_id: user._id, email }, tokenKey, {
-			expiresIn: '2h',
-		});
+		const token = jwt.sign(
+			{ user_id: user._id, email, userType: user.userType },
+			tokenKey,
+			{
+				expiresIn: '2h',
+			}
+		);
+
 		user.token = token;
 		user.save();
 		const newuser = await createUser(user);
@@ -57,12 +62,27 @@ export const getOldUser = async function (req: Request, res: Response) {
 		const user = await UsersModal.findOne({ email });
 
 		if (user && (await bcrypt.compare(password, user.password))) {
-			const token = jwt.sign({ user_id: user._id, email }, tokenKey, {
-				expiresIn: '2h',
-			});
+			const token = jwt.sign(
+				{ user_id: user._id, email, userType: user.userType },
+				tokenKey,
+				{
+					expiresIn: '2h',
+				}
+			);
+
 			user.token = token;
 			res.status(201).json(user);
 		}
+	} catch (err) {
+		throw err;
+	}
+};
+export const userLike = async (req: Request, res: Response) => {
+	console.log(req.body.userId);
+	console.log(req.body);
+	try {
+		const tipLike = await updateUser(req.body._id, req.body.data);
+		res.status(201).json(tipLike);
 	} catch (err) {
 		throw err;
 	}

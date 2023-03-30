@@ -5,6 +5,8 @@ import {
 } from '../service/subjects.service';
 import express, { Request, Response } from 'express';
 import { SubjectsModal } from '../model/subjects.model';
+import { AnswersModal } from '../model/answers.model';
+import { deletesAnswer } from '../service/answers.service';
 
 export const getAllSubjects = async (req: Request, res: Response) => {
 	try {

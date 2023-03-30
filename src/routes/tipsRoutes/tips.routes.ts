@@ -6,9 +6,9 @@ import {
 	tipLike,
 } from '../../controllers/tips.controllers';
 const tipsRouter = express.Router();
-
+const middleWare = require('../../middleWare/IsAdmin');
 tipsRouter.get('/', getAllTips);
 tipsRouter.post('/', newTip);
 tipsRouter.put('/', tipLike);
-tipsRouter.delete('/', deleteTips);
+tipsRouter.delete('/', middleWare.adminVerify('admin'), deleteTips);
 export default tipsRouter;

@@ -1,17 +1,19 @@
-import { ObjectId, Schema } from "mongoose";
-import mongoose from "mongoose";
+import { ObjectId, Schema } from 'mongoose';
+import mongoose from 'mongoose';
 export interface IAnswers {
-	questionsId: ObjectId;
-	userName: string;
-	date: Date;
-	title: string;
+	// _id?: ObjectId;
+	questionsId?: ObjectId;
+	userName?: string;
+	date?: Date;
+	title?: string;
 }
 
 export const answersSchema = new Schema<IAnswers>({
-	questionsId: { type: Schema.Types.ObjectId, required: true },
-	userName: { type: String, required: true },
-	date: { type: Date, required: true },
-	title: { type: String, required: true },
+	// _id: { type: Schema.Types.ObjectId, required: true },
+	questionsId: { type: Schema.Types.ObjectId, required: false },
+	userName: { type: String, required: false },
+	date: { type: Date, required: false },
+	title: { type: String, required: false },
 });
 
-export const AnswersModal = mongoose.model<IAnswers>("answers", answersSchema);
+export const AnswersModal = mongoose.model<IAnswers>('answers', answersSchema);

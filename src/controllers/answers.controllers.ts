@@ -24,6 +24,7 @@ export const createAnswer = async (req: Request, res: Response) => {
 	}
 };
 export const deleteAnswer = async (req: Request, res: Response) => {
+	console.log(req.body);
 	try {
 		const answer = await deleteAnswers(req.body._id);
 		return res.status(200).json({

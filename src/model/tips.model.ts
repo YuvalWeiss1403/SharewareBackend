@@ -6,6 +6,7 @@ export interface ITips {
 	approved?: boolean;
 	likes: number;
 	comment: string;
+	userId: string;
 }
 
 export const tipsSchema = new Schema<ITips>({
@@ -14,6 +15,7 @@ export const tipsSchema = new Schema<ITips>({
 	comment: { type: String, required: true },
 	likes: { type: Number, required: true },
 	approved: { type: Boolean, required: false },
+	userId: { type: String, required: true },
 });
 
 export const TipsModal = mongoose.model<ITips>('tips', tipsSchema);

@@ -5,7 +5,7 @@ export interface IQuestions {
 	date: Date;
 	title: string;
 	subjectId: string;
-	header: string;
+	question: string;
 	answers: [ObjectId];
 }
 
@@ -14,7 +14,7 @@ export const questionsSchema = new Schema<IQuestions>({
 	date: { type: Date, required: true },
 	title: { type: String, required: true },
 	subjectId: { type: String, required: true },
-	header: { type: String, required: false },
+	question: { type: String, required: true },
 	answers: { type: [Schema.Types.ObjectId], required: false },
 });
 
