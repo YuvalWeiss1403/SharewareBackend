@@ -3,8 +3,7 @@ import {
 	deleteQuestion,
 	getQuestions,
 } from '../service/questions.service';
-import express, { Request, Response } from 'express';
-import { QuestionsModal } from '../model/questions.model';
+import { Request, Response } from 'express';
 import { AnswersModal } from '../model/answers.model';
 import { deletesAnswer } from '../service/answers.service';
 
@@ -36,7 +35,7 @@ export const deleteQuestions = async (req: Request, res: Response) => {
 		return res.status(200).json({
 			status: 200,
 			data: question,
-			message: 'Successfully removed chef',
+			message: 'Successfully removed question',
 		});
 	} catch (err: any) {
 		console.log(err);

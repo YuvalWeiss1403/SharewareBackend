@@ -53,7 +53,7 @@ export const deleteTips = async (req: Request, res: Response) => {
 		return res.status(200).json({
 			status: 200,
 			data: tips,
-			message: 'Successfully removed chef',
+			message: 'Successfully removed tip',
 		});
 	} catch (err: any) {
 		console.log(err);

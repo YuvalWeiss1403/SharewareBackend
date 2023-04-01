@@ -39,7 +39,7 @@ export const deleteSubjects = async (req: Request, res: Response) => {
 		return res.status(200).json({
 			status: 200,
 			data: subjects,
-			message: 'Successfully removed chef',
+			message: 'Successfully removed subject',
 		});
 	} catch (err: any) {
 		console.log(err);
