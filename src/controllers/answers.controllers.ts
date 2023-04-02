@@ -15,7 +15,6 @@ export const getAllAnswers = async (req: Request, res: Response) => {
 };
 export const createAnswer = async (req: Request, res: Response) => {
 	try {
-		console.log(req.body);
 		const newAnswer = await createAnswers(req.body);
 		res.status(201).json(newAnswer);
 	} catch (err) {
@@ -23,7 +22,6 @@ export const createAnswer = async (req: Request, res: Response) => {
 	}
 };
 export const deleteAnswer = async (req: Request, res: Response) => {
-	console.log(req.body);
 	try {
 		const answer = await deleteAnswers(req.body._id);
 		return res.status(200).json({
@@ -32,7 +30,6 @@ export const deleteAnswer = async (req: Request, res: Response) => {
 			message: 'Successfully removed Answer',
 		});
 	} catch (err: any) {
-		console.log(err);
 		return res.status(500).json({
 			status: 500,
 			message: 'Internal server error',

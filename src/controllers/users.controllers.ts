@@ -87,8 +87,6 @@ export const getOldUser = async function (req: Request, res: Response) {
 	}
 };
 export const userLike = async (req: Request, res: Response) => {
-	console.log(req.body.userId);
-	console.log(req.body);
 	try {
 		const tipLike = await updateUser(req.body._id, req.body.data);
 		res.status(201).json(tipLike);

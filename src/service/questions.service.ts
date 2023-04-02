@@ -5,7 +5,6 @@ export const getQuestions = async () => {
 		const questions = await QuestionsModal.find();
 		return questions;
 	} catch (err) {
-		console.log(err);
 		throw err;
 	}
 };
@@ -15,7 +14,6 @@ export const createQuestion = async (question: IQuestions) => {
 		await newQuestion.save();
 		return newQuestion;
 	} catch (err) {
-		console.log(err);
 		throw err;
 	}
 };
@@ -24,7 +22,6 @@ export const deleteQuestion = async (questionId: string) => {
 		await QuestionsModal.findByIdAndDelete(questionId);
 		return await QuestionsModal.find();
 	} catch (err) {
-		console.log(err);
 		throw err;
 	}
 };

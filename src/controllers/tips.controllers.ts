@@ -18,7 +18,6 @@ export const getAllTips = async (req: Request, res: Response) => {
 };
 export const newTip = async (req: Request, res: Response) => {
 	try {
-		console.log(req.body);
 		const { title, username, comment } = req.body;
 		if (!(title && username && comment)) {
 			return res.status(400).send('All input is required');
@@ -30,17 +29,13 @@ export const newTip = async (req: Request, res: Response) => {
 	}
 };
 export const tipLike = async (req: Request, res: Response) => {
-	console.log(req.body.userId);
-	console.log(req.body);
 	try {
 		const tipLike = await updateLike(req.body._id, req.body.data);
 		const userData = await UsersModal.findById(req.body.userId);
-		console.log('userdata', userData);
 		if (!userData) {
 			return res.status(404).send('user not found');
 		}
 		userData.tipLiked?.push(req.body._id);
-		console.log(userData.tipLiked);
 		await userData.save();
 		res.status(201).json(tipLike);
 	} catch (err) {
@@ -56,7 +51,6 @@ export const deleteTips = async (req: Request, res: Response) => {
 			message: 'Successfully removed tip',
 		});
 	} catch (err: any) {
-		console.log(err);
 		return res.status(500).json({
 			status: 500,
 			message: 'Internal server error',

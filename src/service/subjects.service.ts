@@ -5,7 +5,6 @@ export const getSubjects = async () => {
 		const subjects = await SubjectsModal.find();
 		return subjects;
 	} catch (err) {
-		console.log(err);
 		throw err;
 	}
 };
@@ -15,7 +14,6 @@ export const createSubject = async (subject: ISubjects) => {
 		await newSubject.save();
 		return newSubject;
 	} catch (err) {
-		console.log(err);
 		throw err;
 	}
 };
@@ -24,7 +22,6 @@ export const deleteSubject = async (subjectId: string) => {
 		await SubjectsModal.findByIdAndDelete(subjectId);
 		return await SubjectsModal.find();
 	} catch (err) {
-		console.log(err);
 		throw err;
 	}
 };

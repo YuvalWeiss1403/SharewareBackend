@@ -5,7 +5,6 @@ export const getanswers = async () => {
 		const answers = await AnswersModal.find();
 		return answers;
 	} catch (err) {
-		console.log(err);
 		throw err;
 	}
 };
@@ -15,7 +14,6 @@ export const createAnswers = async (answers: IAnswers) => {
 		await newAnswers.save();
 		return newAnswers;
 	} catch (err) {
-		console.log(err);
 		throw err;
 	}
 };
@@ -24,7 +22,6 @@ export const deleteAnswers = async (answersId: string) => {
 		await AnswersModal.findByIdAndDelete(answersId);
 		return await AnswersModal.find();
 	} catch (err) {
-		console.log(err);
 		throw err;
 	}
 };
@@ -35,7 +32,6 @@ export const deletesAnswer = async (arrayAnswer: IAnswers[]) => {
 		});
 		return await AnswersModal.find();
 	} catch (err) {
-		console.log(err);
 		throw err;
 	}
 };
