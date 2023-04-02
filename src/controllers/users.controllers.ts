@@ -82,6 +82,7 @@ export const getOldUser = async function (req: Request, res: Response) {
 			user.token = token;
 			res.status(201).json(user);
 		}
+		res.status(400).send('Invalid Credentials');
 	} catch (err) {
 		throw err;
 	}
