@@ -6,7 +6,6 @@ export const getUsers = async () => {
 		const users = await UsersModal.find();
 		return users;
 	} catch (err) {
-		console.log(err);
 		throw err;
 	}
 };
@@ -17,19 +16,16 @@ export const createUser = async (user: IUser) => {
 
 		return newUser;
 	} catch (err) {
-		console.log(err);
 		throw err;
 	}
 };
 export const updateUser = async (_id: ObjectId, user: IUser) => {
 	try {
 		const like = await UsersModal.findByIdAndUpdate(_id, user, { new: true });
-		console.log(like);
 		if (like) {
 			return like;
 		}
 	} catch (err) {
-		console.log(err);
 		throw err;
 	}
 };

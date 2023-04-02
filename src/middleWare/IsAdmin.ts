@@ -12,7 +12,6 @@ exports.adminVerify = (role: string) => {
 				userType: string;
 			};
 			if (user.userType === role) {
-				console.log('next');
 				next();
 			} else {
 				return res

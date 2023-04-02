@@ -18,7 +18,6 @@ export const getAllSubjects = async (req: Request, res: Response) => {
 };
 export const createSubjects = async (req: Request, res: Response) => {
 	try {
-		console.log(req.body.name);
 		const { name } = req.body;
 		if (!name) {
 			return res.status(400).send('All input is required');
@@ -39,10 +38,9 @@ export const deleteSubjects = async (req: Request, res: Response) => {
 		return res.status(200).json({
 			status: 200,
 			data: subjects,
-			message: 'Successfully removed chef',
+			message: 'Successfully removed subject',
 		});
 	} catch (err: any) {
-		console.log(err);
 		return res.status(500).json({
 			status: 500,
 			message: 'Internal server error',
